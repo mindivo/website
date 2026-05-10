@@ -175,8 +175,8 @@ const contactInfo = [
   },
   {
     icon: <Phone size={18} className="text-[#3ca2fa]" />,
-    text: "+1 (470) 909-8452",
-    href: "tel:+14709098452",
+    text: "+1 (475) 325-8450",
+    href: "tel:+14753258450",
   },
   {
     icon: <MapPin size={18} className="text-[#3ca2fa]" />,

@@ -66,7 +66,7 @@ export default function CTASection() {
             <div className="space-y-5">
               {[
                 { icon: Mail,   label: 'Email',    value: 'admin@mindivotech.com' },
-                { icon: Phone,  label: 'Phone',    value: '+1 (470) 909-8452' },
+                { icon: Phone,  label: 'Phone',    value: '+1 (475) 325-8450' },
                 { icon: MapPin, label: 'Based in', value: 'United States' },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4">
