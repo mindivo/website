@@ -44,11 +44,4 @@ next-env.d.ts
 # agent instructions
 AGENTS.md
 
-# independent sub-repos
-car-workshop-management-software/
-crm_1/
-crm_2/
-inventory-management-software/
-medical_app/
-smool/
-job-description-generator/
+.env*.local
