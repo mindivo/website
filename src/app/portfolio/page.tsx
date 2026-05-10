@@ -8,9 +8,9 @@ export default function PortfolioPage() {
       <Navbar />
       <main className="min-h-screen bg-background pt-24">
         <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">Our Work</h1>
+          <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">Live Apps</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A deep dive into the digital products we've architected and shipped.
+            Production Mindivo app deployments with direct links and concise build details.
           </p>
         </div>
         <ProjectShowcase />

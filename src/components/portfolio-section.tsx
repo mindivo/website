@@ -7,14 +7,14 @@ export default function PortfolioSection() {
       <div className="relative max-w-7xl mx-auto px-4 pt-24 sm:pt-32 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest mb-6">
           <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          Our Work
+          Live Apps
         </div>
         <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-8">
-          <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Crafting Digital</span>{' '}
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Excellence</span>
+          <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Deployed Mindivo</span>{' '}
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Apps</span>
         </h2>
         <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto">
-          We don't just write code; we architect solutions that drive growth and redefine industries.
+          A focused portfolio of production deployments, each with a direct public link.
         </p>
       </div>
 

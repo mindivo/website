@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -39,3 +40,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent instructions
+AGENTS.md
+
+# independent sub-repos
+car-workshop-management-software/
+crm_1/
+crm_2/
+inventory-management-software/
+medical_app/
+smool/
+job-description-generator/

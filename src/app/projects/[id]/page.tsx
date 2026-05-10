@@ -1,12 +1,36 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, User, Tag } from "lucide-react";
+import {
+  Building2,
+  Calendar,
+  Clock,
+  ExternalLink,
+  FileText,
+  MapPin,
+  Stethoscope,
+  Tag,
+  Target,
+  User,
+  Warehouse,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
 import Navbar from "@/components/navbar";
 import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 import { WavePath } from "@/components/ui/wave-path";
 import { HoverFooter } from "@/components/ui/hover-footer";
-import { getProject, projects } from "@/lib/projects";
+import { getProject, projects, type ProjectDetail } from "@/lib/projects";
+
+const projectIcons: Record<ProjectDetail["iconKey"], LucideIcon> = {
+  wrench: Wrench,
+  building: Building2,
+  target: Target,
+  warehouse: Warehouse,
+  stethoscope: Stethoscope,
+  mapPin: MapPin,
+  fileText: FileText,
+};
 
 export function generateStaticParams() {
   return projects.map((p) => ({ id: p.id }));
@@ -20,6 +44,7 @@ export default async function ProjectPage({
   const { id } = await params;
   const project = getProject(id);
   if (!project) notFound();
+  const ProjectIcon = projectIcons[project.iconKey];
 
   return (
     <>
@@ -36,6 +61,10 @@ export default async function ProjectPage({
             <div className="w-full max-w-7xl mx-auto">
               {/* HandWrittenTitle hero */}
               <div className="-ml-4 sm:-ml-8 lg:-ml-12">
+                 <div className="mb-6 ml-4 inline-flex items-center gap-3 rounded-2xl border border-border/40 bg-card/40 px-4 py-3 text-sm font-semibold text-foreground backdrop-blur sm:ml-8 lg:ml-12">
+                   <ProjectIcon className="h-5 w-5 text-primary" />
+                   <span>{project.category}</span>
+                 </div>
                  <HandWrittenTitle title={project.title} subtitle={project.tagline} />
               </div>
             </div>
@@ -43,21 +72,34 @@ export default async function ProjectPage({
 
           {/* Meta strip — anchored to the bottom */}
           <div className="absolute bottom-0 left-0 right-0 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-12 border-t border-border/30 pt-10">
-              {[
-                { icon: User, label: "Client", value: project.client },
-                { icon: Clock, label: "Duration", value: project.duration },
-                { icon: Calendar, label: "Year", value: project.year },
-                { icon: Tag, label: "Role", value: project.role },
-              ].map(({ icon: Icon, label, value }) => (
-                <div key={label}>
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60 uppercase tracking-widest mb-2">
-                    <Icon className="w-3.5 h-3.5" />
-                    {label}
+            <div className="border-t border-border/30 pt-10">
+              <div className="mb-8">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-xl shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-primary/30"
+                >
+                  Open live app
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-12">
+                {[
+                  { icon: User, label: "Client", value: project.client },
+                  { icon: Clock, label: "Status", value: project.duration },
+                  { icon: Calendar, label: "Year", value: project.year },
+                  { icon: Tag, label: "Role", value: project.role },
+                ].map(({ icon: Icon, label, value }) => (
+                  <div key={label}>
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60 uppercase tracking-widest mb-2">
+                      <Icon className="w-3.5 h-3.5" />
+                      {label}
+                    </div>
+                    <p className="text-base font-semibold text-foreground">{value}</p>
                   </div>
-                  <p className="text-base font-semibold text-foreground">{value}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -229,9 +271,15 @@ export default async function ProjectPage({
                   </div>
                   <div className="p-5">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">
-                        {p.title}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        {(() => {
+                          const RelatedIcon = projectIcons[p.iconKey];
+                          return <RelatedIcon className="h-4 w-4 text-primary" />;
+                        })()}
+                        <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">
+                          {p.title}
+                        </h3>
+                      </div>
                       <span className="text-xs text-muted-foreground/50 font-mono">
                         /{p.year}
                       </span>

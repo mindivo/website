@@ -2,46 +2,30 @@
 
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
-import { ArrowUpRight } from "lucide-react"
+import Link from "next/link"
+import {
+  ArrowUpRight,
+  Building2,
+  ExternalLink,
+  FileText,
+  MapPin,
+  Stethoscope,
+  Target,
+  Warehouse,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react"
+import { projects, type ProjectDetail } from "@/lib/projects"
 
-interface Project {
-  title: string
-  description: string
-  year: string
-  link: string
-  image: string
+const projectIcons: Record<ProjectDetail["iconKey"], LucideIcon> = {
+  wrench: Wrench,
+  building: Building2,
+  target: Target,
+  warehouse: Warehouse,
+  stethoscope: Stethoscope,
+  mapPin: MapPin,
+  fileText: FileText,
 }
-
-const mindivoProjects: Project[] = [
-  {
-    title: "RetailPro",
-    description: "End-to-end retail management SaaS with real-time analytics.",
-    year: "2024",
-    link: "/projects/retailpro",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2670&auto=format&fit=crop",
-  },
-  {
-    title: "MedTrack",
-    description: "HIPAA-compliant patient monitoring and care coordination app.",
-    year: "2024",
-    link: "/projects/medtrack",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2670&auto=format&fit=crop",
-  },
-  {
-    title: "LogiFlow",
-    description: "Supply-chain digitization and logistics automation platform.",
-    year: "2023",
-    link: "/projects/logiflow",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2670&auto=format&fit=crop",
-  },
-  {
-    title: "EduLearn",
-    description: "Adaptive learning platform with personalized content paths.",
-    year: "2023",
-    link: "/projects/edulearn",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2670&auto=format&fit=crop",
-  },
-]
 
 export function ProjectShowcase() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -113,9 +97,9 @@ export function ProjectShowcase() {
         }}
       >
         <div className="relative w-[340px] h-[220px] bg-card rounded-2xl overflow-hidden">
-          {mindivoProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <img
-              key={project.title}
+              key={project.id}
               src={project.image}
               alt={project.title}
               className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out"
@@ -133,78 +117,136 @@ export function ProjectShowcase() {
 
       {/* List */}
       <div className="space-y-0 relative">
-        {mindivoProjects.map((project, index) => (
-          <a
-            key={project.title}
-            href={project.link}
-            className="group block relative"
-            onMouseEnter={() => handleMouseEnter(index)}
+        {projects.map((project, index) => (
+          <ProjectRow
+            key={project.id}
+            project={project}
+            index={index}
+            hoveredIndex={hoveredIndex}
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-          >
-            <div className="relative py-10 border-t border-border/40 transition-all duration-500 ease-in-out">
-              {/* Animated reveal background */}
-              <div
-                className={`
-                  absolute inset-0 -mx-6 px-6 bg-primary/[0.03] dark:bg-primary/[0.05]
-                  transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-                  ${hoveredIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"}
-                `}
-              />
-
-              <div className="relative flex items-center justify-between gap-8">
-                <div className="flex-1">
-                  <div className="inline-flex items-center gap-4">
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground transition-all duration-500">
-                      <span className="relative">
-                        {project.title}
-                        <span
-                          className={`
-                            absolute left-0 -bottom-1 h-0.5 bg-primary
-                            transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-                            ${hoveredIndex === index ? "w-full" : "w-0"}
-                          `}
-                        />
-                      </span>
-                    </h3>
-
-                    <ArrowUpRight
-                      className={`
-                        w-6 h-6 text-primary transition-all duration-500
-                        ${
-                          hoveredIndex === index
-                            ? "opacity-100 translate-x-0 translate-y-0 rotate-0"
-                            : "opacity-0 -translate-x-4 translate-y-4 -rotate-45"
-                        }
-                      `}
-                    />
-                  </div>
-
-                  <p
-                    className={`
-                      text-lg mt-3 max-w-xl transition-all duration-500
-                      ${hoveredIndex === index ? "text-foreground/80" : "text-muted-foreground/60"}
-                    `}
-                  >
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="flex flex-col items-end gap-2">
-                  <span
-                    className={`
-                      text-sm font-mono tracking-tighter tabular-nums transition-all duration-500
-                      ${hoveredIndex === index ? "text-primary font-bold" : "text-muted-foreground/40"}
-                    `}
-                  >
-                    /{project.year}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </a>
+          />
         ))}
         <div className="border-t border-border/40" />
       </div>
     </section>
+  )
+}
+
+function ProjectRow({
+  project,
+  index,
+  hoveredIndex,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  project: ProjectDetail
+  index: number
+  hoveredIndex: number | null
+  onMouseEnter: (index: number) => void
+  onMouseLeave: () => void
+}) {
+  const Icon = projectIcons[project.iconKey]
+
+  return (
+    <div
+      className="group block relative"
+      onMouseEnter={() => onMouseEnter(index)}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="relative py-10 border-t border-border/40 transition-all duration-500 ease-in-out">
+        {/* Animated reveal background */}
+        <div
+          className={`
+            absolute inset-0 -mx-6 px-6 bg-primary/[0.03] dark:bg-primary/[0.05]
+            transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
+            ${hoveredIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"}
+          `}
+        />
+
+        <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center gap-4">
+              <div
+                className={`
+                  flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border transition-all duration-500
+                  ${
+                    hoveredIndex === index
+                      ? "border-primary/40 bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                      : "border-border/50 bg-card/50 text-muted-foreground"
+                  }
+                `}
+                aria-hidden="true"
+              >
+                <Icon className="h-5 w-5" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground transition-all duration-500">
+                <span className="relative">
+                  {project.title}
+                  <span
+                    className={`
+                      absolute left-0 -bottom-1 h-0.5 bg-primary
+                      transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
+                      ${hoveredIndex === index ? "w-full" : "w-0"}
+                    `}
+                  />
+                </span>
+              </h3>
+
+              <ArrowUpRight
+                className={`
+                  w-6 h-6 text-primary transition-all duration-500
+                  ${
+                    hoveredIndex === index
+                      ? "opacity-100 translate-x-0 translate-y-0 rotate-0"
+                      : "opacity-0 -translate-x-4 translate-y-4 -rotate-45"
+                  }
+                `}
+              />
+            </div>
+
+            <p
+              className={`
+                text-lg mt-3 max-w-xl transition-all duration-500
+                ${hoveredIndex === index ? "text-foreground/80" : "text-muted-foreground/60"}
+              `}
+            >
+              {project.description}
+            </p>
+
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-primary/30"
+              >
+                Open live app
+                <ExternalLink className="h-4 w-4" />
+              </a>
+              <Link
+                href={`/projects/${project.id}`}
+                className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-card/40 px-4 py-2 text-sm font-semibold text-foreground transition-all hover:border-primary/40 hover:bg-accent/50"
+              >
+                View details
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end gap-2">
+            <span
+              className={`
+                text-sm font-mono tracking-tighter tabular-nums transition-all duration-500
+                ${hoveredIndex === index ? "text-primary font-bold" : "text-muted-foreground/40"}
+              `}
+            >
+              /{project.category}
+            </span>
+            <span className="text-xs text-muted-foreground/50">{project.year}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
