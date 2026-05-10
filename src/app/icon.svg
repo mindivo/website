@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="primary" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="256" height="256" rx="54" fill="url(#bg)"/>
+  <rect width="256" height="128" rx="54" fill="url(#shine)"/>
+
+  <!-- M lettermark — clean geometric -->
+  <!-- Left vertical bar -->
+  <rect x="44" y="68" width="28" height="120" rx="8" fill="url(#primary)"/>
+  <!-- Right vertical bar -->
+  <rect x="184" y="68" width="28" height="120" rx="8" fill="url(#primary)"/>
+  <!-- Left diagonal (M left peak) -->
+  <polygon points="44,68 72,68 128,148 102,148" fill="url(#primary)"/>
+  <!-- Right diagonal (M right peak) -->
+  <polygon points="212,68 184,68 128,148 154,148" fill="url(#primary)"/>
+
+  <!-- Accent underline / glow bar -->
+  <rect x="44" y="200" width="168" height="6" rx="3" fill="url(#accent)" opacity="0.85"/>
+
+  <!-- Subtle dot accent top-right -->
+  <circle cx="210" cy="48" r="12" fill="url(#accent)" opacity="0.5"/>
+</svg>

@@ -14,14 +14,77 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Mindivo — Digital Software Solutions",
+  metadataBase: new URL("https://mindivo.com"),
+  title: {
+    default: "Mindivo — Custom Software Development Company",
+    template: "%s | Mindivo",
+  },
   description:
-    "US-based software company specialising in mobile app development, web platforms, and end-to-end business digitization.",
-  keywords: "mobile app development, web development, business digitization, software company, US tech",
+    "Mindivo builds custom web apps, mobile apps, and AI-powered software for businesses. From CRM and inventory systems to healthcare and HR tech — we ship production-ready products fast.",
+  keywords: [
+    "custom software development",
+    "web app development",
+    "mobile app development",
+    "AI software company",
+    "CRM development",
+    "inventory management software",
+    "healthcare software",
+    "HR tech software",
+    "SaaS development",
+    "business software solutions",
+    "Next.js development agency",
+    "React development company",
+    "Mindivo",
+  ],
+  authors: [{ name: "Mindivo", url: "https://mindivo.com" }],
+  creator: "Mindivo",
+  publisher: "Mindivo",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Mindivo — Digital Software Solutions",
-    description: "Custom software for forward-thinking American businesses.",
     type: "website",
+    locale: "en_US",
+    url: "https://mindivo.com",
+    siteName: "Mindivo",
+    title: "Mindivo — Custom Software Development Company",
+    description:
+      "We build custom web apps, mobile apps, and AI-powered software that ships fast and scales. From idea to production — Mindivo delivers.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mindivo — Custom Software Development",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mindivo — Custom Software Development Company",
+    description:
+      "We build custom web apps, mobile apps, and AI-powered software that ships fast and scales.",
+    images: ["/og-image.png"],
+    creator: "@mindivo",
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  alternates: {
+    canonical: "https://mindivo.com",
   },
 };
 

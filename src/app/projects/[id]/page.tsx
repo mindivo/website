@@ -21,6 +21,28 @@ import { HandWrittenTitle } from "@/components/ui/hand-writing-text";
 import { WavePath } from "@/components/ui/wave-path";
 import { HoverFooter } from "@/components/ui/hover-footer";
 import { getProject, projects, type ProjectDetail } from "@/lib/projects";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const project = getProject(id);
+  if (!project) return {};
+  return {
+    title: `${project.title} — ${project.category}`,
+    description: project.tagline,
+    alternates: { canonical: `https://mindivo.com/projects/${id}` },
+    openGraph: {
+      title: project.title,
+      description: project.tagline,
+      url: `https://mindivo.com/projects/${id}`,
+      images: [{ url: project.image, width: 1200, height: 630, alt: project.title }],
+    },
+  };
+}
 
 const projectIcons: Record<ProjectDetail["iconKey"], LucideIcon> = {
   wrench: Wrench,
