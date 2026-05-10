@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: "Mindivo Contact Form <noreply@mindivo.com>",
+      from: "Mindivo Contact Form <onboarding@resend.dev>",
       to: "admin@mindivotech.com",
       replyTo: email,
       subject: `New enquiry from ${name}${company ? ` at ${company}` : ""}`,
