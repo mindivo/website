@@ -7,11 +7,30 @@ export default function CTASection() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    // Simulate async send
-    setTimeout(() => { setStatus('sent'); formRef.current?.reset(); }, 1200);
+    const form = formRef.current!;
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      company: (form.elements.namedItem('company') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      service: (form.elements.namedItem('service') as HTMLSelectElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+    };
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setStatus('sent');
+      form.reset();
+    } catch {
+      setStatus('idle');
+      alert('Something went wrong. Please email us directly at admin@mindivotech.com');
+    }
   };
 
   return (
