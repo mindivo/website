@@ -12,15 +12,15 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Mindivo",
-  url: "https://mindivo.com",
-  logo: "https://mindivo.com/icon.svg",
+  url: "https://mindivotech.com",
+  logo: "https://mindivotech.com/icon.svg",
   description:
     "Mindivo builds custom web apps, mobile apps, and AI-powered software for businesses. We ship production-ready products fast.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",
-    email: "admin@mindivo.com",
+    email: "admin@mindivotech.com",
   },
   offers: {
     "@type": "Offer",

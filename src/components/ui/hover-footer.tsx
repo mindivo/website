@@ -170,8 +170,8 @@ const footerLinks = [
 const contactInfo = [
   {
     icon: <Mail size={18} className="text-[#3ca2fa]" />,
-    text: "admin@mindivo.com",
-    href: "mailto:admin@mindivo.com",
+    text: "admin@mindivotech.com",
+    href: "mailto:admin@mindivotech.com",
   },
   {
     icon: <Phone size={18} className="text-[#3ca2fa]" />,

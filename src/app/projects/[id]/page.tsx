@@ -34,11 +34,11 @@ export async function generateMetadata({
   return {
     title: `${project.title} — ${project.category}`,
     description: project.tagline,
-    alternates: { canonical: `https://mindivo.com/projects/${id}` },
+    alternates: { canonical: `https://mindivotech.com/projects/${id}` },
     openGraph: {
       title: project.title,
       description: project.tagline,
-      url: `https://mindivo.com/projects/${id}`,
+      url: `https://mindivotech.com/projects/${id}`,
       images: [{ url: project.image, width: 1200, height: 630, alt: project.title }],
     },
   };

@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Portfolio — Live Apps Built by Mindivo",
   description:
     "Explore production apps built by Mindivo — CRM systems, automotive management, inventory software, healthcare tools, and AI-powered apps. All live and deployed.",
-  alternates: { canonical: "https://mindivo.com/portfolio" },
+  alternates: { canonical: "https://mindivotech.com/portfolio" },
   openGraph: {
     title: "Portfolio — Live Apps Built by Mindivo",
     description:
       "Production apps built by Mindivo across CRM, healthcare, inventory, automotive, and AI. All deployed and live.",
-    url: "https://mindivo.com/portfolio",
+    url: "https://mindivotech.com/portfolio",
   },
 };
 

@@ -18,9 +18,9 @@ export async function POST(req: Request) {
       html: `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:32px;background:#0f0f1a;color:#e2e8f0;border-radius:12px;">
           <div style="margin-bottom:24px;">
-            <img src="https://mindivo.com/icon.svg" width="40" alt="Mindivo" style="border-radius:8px;" />
+            <img src="https://mindivotech.com/icon.svg" width="40" alt="Mindivo" style="border-radius:8px;" />
             <h1 style="font-size:20px;margin:12px 0 4px;color:#fff;">New Contact Form Submission</h1>
-            <p style="margin:0;color:#94a3b8;font-size:14px;">via mindivo.com</p>
+            <p style="margin:0;color:#94a3b8;font-size:14px;">via mindivotech.com</p>
           </div>
 
           <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:24px;">
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
             Reply to ${name}
           </a>
 
-          <p style="margin-top:24px;font-size:12px;color:#475569;">This message was sent via the contact form at mindivo.com</p>
+          <p style="margin-top:24px;font-size:12px;color:#475569;">This message was sent via the contact form at mindivotech.com</p>
         </div>
       `,
     });

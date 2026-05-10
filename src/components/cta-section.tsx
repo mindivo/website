@@ -65,7 +65,7 @@ export default function CTASection() {
             {/* Contact info */}
             <div className="space-y-5">
               {[
-                { icon: Mail,   label: 'Email',    value: 'admin@mindivo.com' },
+                { icon: Mail,   label: 'Email',    value: 'admin@mindivotech.com' },
                 { icon: Phone,  label: 'Phone',    value: '+1 (470) 909-8452' },
                 { icon: MapPin, label: 'Based in', value: 'United States' },
               ].map(({ icon: Icon, label, value }) => (

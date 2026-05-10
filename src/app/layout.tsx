@@ -15,7 +15,7 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mindivo.com"),
+  metadataBase: new URL("https://mindivotech.com"),
   title: {
     default: "Mindivo — Custom Software Development Company",
     template: "%s | Mindivo",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "React development company",
     "Mindivo",
   ],
-  authors: [{ name: "Mindivo", url: "https://mindivo.com" }],
+  authors: [{ name: "Mindivo", url: "https://mindivotech.com" }],
   creator: "Mindivo",
   publisher: "Mindivo",
   robots: {
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mindivo.com",
+    url: "https://mindivotech.com",
     siteName: "Mindivo",
     title: "Mindivo — Custom Software Development Company",
     description:
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "https://mindivo.com",
+    canonical: "https://mindivotech.com",
   },
 };
 
